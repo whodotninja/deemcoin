@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deemcoin.cash - The Shoppp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet"> 
+    <style>
+        :root {
+            --satin-sheen-gold: #D09E38ff;
+            --white: #ffffff;
+            --russian-violet: #401C4Eff;
+            --african-violet: #A477BCff;
+            --neon-green: #39ff14;
+            --danger-red: #ff0033;
+        }
+
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: #A477BCff;
+            color: #ff0033;
+            text-shadow: 2px 2px #000;
+            padding: 2rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--neon-green);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .shop-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            grid-auto-flow: dense;
+            gap: 15px;
+            width: 90%;
+            max-width: 1200px;
+            border: 5px dashed var(--danger-red);
+            padding: 15px;
+            background: rgba(64, 28, 78, 0.9);
+        }
+
+        .shop-item {
+            border: 3px solid var(--african-violet);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            gap: 10px;
+        }
+
+        .shop-item img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px var(--neon-green));
+        }
+
+        .shop-item-name {
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .shop-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1em;
+            font-family: 'Crimson Text', monospace;
+            color: #000000;
+            cursor: pointer;
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+            text-decoration: none;
+            text-shadow: none;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .clickable {
+            cursor: pointer;
+            border-color: var(--satin-sheen-gold);
+        }
+
+        .clickable:hover {
+            box-shadow: 0 0 15px var(--satin-sheen-gold);
+        }
+
+        .wide-item {
+            grid-column: span 4;
+        }
+
+        .extra-large-item {
+            grid-column: span 4;
+            min-height: 300px;
+            font-size: 2.5rem;
+            border-color: var(--danger-red);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(148, 118, 118, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(64, 28, 78, 0.95);
+            border: 4px solid var(--danger-red);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 30px var(--neon-green);
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            margin: 0;
+            flex: 1;
+        }
+
+        .modal-close {
+            background: var(--danger-red);
+            border: 2px solid var(--white);
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            font-family: monospace;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--neon-green));
+        }
+
+        .modal-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--white);
+            text-shadow: 1px 1px #000;
+        }
+
+        .modal-description a {
+            color: var(--satin-sheen-gold);
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-description a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .shop-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .shop-item {
+                font-size: 0.8rem;
+            }
+            .wide-item, .extra-large-item {
+                grid-column: span 2;
+            }
+            .modal-content {
+                max-width: 90vw;
+                padding: 20px;
+            }
+            .modal-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="./index.html" class="back-button">← back to main site</a>
+
+    <h1>The Shoppp</h1>
+
+    <div class="shop-container" id="shop-container"></div>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <img id="modal-image" class="modal-image" alt="">
+            <div class="modal-description" id="modal-description"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const allItems = [
+                { id: 1, name: '1¢ Signed Deemcoin Photo', description: "Genuine signed deemcoin photo! I'm gonna be honest with you. I'm just going to print this out with the signature on it. I don't wanna sign a piece of paper more than once. Don't print it out on your own though only my printer can make it right", clickable: true, image: './assets/deemcoin_photo.png' },
+                { id: 2, name: '1¢ Melatonin', description: "I take five of these a night just to feel something. The other day i took eight and slept for 43 hours. OUT OF STOCK it's MINE", clickable: true, image: './assets/melatonin.png' },
+                { id: 3, name: '1¢ Genuine Tachophobicat Plushie', description: "Play with him! Set him on fire! Throw him into traffic! Tea parties! All with a little Aidan of your own! Dry Clean only Currently blurred due to security reasons. Those grimy bastards at Hasbro have been trying to pick my brain for the better part of the last 2 years and I WON'T LET THEM! YOU HEAR ME, STODDART?! I WON'T LET YOU!", clickable: true, image: './assets/plushie.png' },
+                { id: 4, name: '1¢ 1998 Toyota Corolla', description: "My Uncle's Toyota Corolla. He moved, so it's all mine now. The windows roll down real slow, and the thing reeks of cigarettes. Surprisingly good at going <a href='./grove.html' target='_blank'>off-road</a>", clickable: true, image: './assets/corolla.png' },
+                { id: 5, name: '1¢ 2 hours Jack time', description: "I'll let you hang out with my most loyal friend for 2 hours. Heavy supervision- JACK CANNOT HAVE RHUBARB. Very allergic but Jack <a href='./avarice.html' target='_blank'>loves the taste</a> You can go to; Walmart, Target, Walgreens, Walmart Garden Centre. Maybe Tesco if one is around", clickable: true, image: './assets/jack_time.png' },
+                { id: 6, name: '1¢ Shot Glass (Lead!)', description: "Awesome Thai shot glass made of pewter so yeah you already know it's gotta hella lead. Well used and <a href='./theirpinnacleshidden.html' target='_blank'>well loved</a> - drank with it for years. I believe it gets you Doubly drunk from all the brain cells 'sploding", clickable: true, image: './assets/shot_glass.png' },
+                { id: 7, name: '1¢ Necklace', description: "Jamie gave me this necklace for my birthday last year! What an awesome gift; I wore it all the time! Bit too <a href='./warning.html' target='_blank'>tight</a>. It snapped a few months ago, and I've not really liked wearing it since it got fixed. A million karat gold", clickable: true, image: './assets/necklace.png' },
+                { id: 8, name: '1¢ Turtle Bell', description: "Used to ring this all the time. Drove everyone wild but i think it was the funniest shit eva. A few years ago, I brought it to a party, and my <a href='./doe.html' target='_blank'>friends</a> took it apart. Must've thrown the button part away, since I can't find it. It rings, but not so good anymore, and it hurts my finger when I try. I haven't rung it in a long time. I don't think I ever will again.", clickable: true, image: './assets/turtle_bell.png' }
+            ];
+
+            let visitCount = parseInt(localStorage.getItem('shopVisitCount') || '0');
+            visitCount++;
+            localStorage.setItem('shopVisitCount', visitCount);
+
+            const shopContainer = document.getElementById('shop-container');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImage = document.getElementById('modal-image');
+            const modalDescription = document.getElementById('modal-description');
+            const modalClose = document.getElementById('modal-close');
+
+            function openModal(item) {
+                modalTitle.textContent = item.name;
+                modalImage.src = item.image;
+                modalImage.alt = item.name;
+                modalDescription.innerHTML = item.description;
+                modalOverlay.classList.add('active');
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+            }
+
+            function renderShop() {
+                shopContainer.innerHTML = '';
+
+                // Immediately start adding more items on first return visit
+                let itemsToShow;
+                if (visitCount === 1) {
+                    itemsToShow = allItems.slice(0, 4);
+                } else if (visitCount === 2) {
+                    itemsToShow = allItems.slice(0, 5);
+                } else if (visitCount === 3) {
+                    itemsToShow = allItems.slice(0, 6);
+                } else if (visitCount === 4) {
+                    itemsToShow = allItems.slice(0, 7);
+                } else {
+                    itemsToShow = allItems.slice(0, 8);
+                }
+
+                let itemsToRender = JSON.parse(JSON.stringify(itemsToShow));
+                const everythingDrive = itemsToRender.find(item => item.id === 5);
+                if (everythingDrive && itemsToRender.length <= 5) {
+                    everythingDrive.className = 'wide-item';
+                }
+
+                itemsToRender.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.classList.add('shop-item');
+                    if (item.className) itemEl.classList.add(item.className);
+                    if (item.clickable) itemEl.classList.add('clickable');
+
+                    const img = document.createElement('img');
+                    img.src = item.image;
+                    img.alt = item.name;
+                    img.onerror = () => { img.style.display = 'none'; };
+
+                    const nameEl = document.createElement('div');
+                    nameEl.classList.add('shop-item-name');
+                    nameEl.textContent = item.name;
+
+                    itemEl.appendChild(img);
+                    itemEl.appendChild(nameEl);
+                    itemEl.dataset.id = item.id;
+
+                    if (item.clickable) itemEl.addEventListener('click', () => openModal(item));
+                    shopContainer.appendChild(itemEl);
+                });
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            renderShop();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bffs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #A477BC;
+            color: #ff0033;
+            font-family: 'Crimson Text', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Video styling to replace iframe styles */
+        video {
+            width: 100%;
+            max-width: 700px; /* Max width to match the old iframe container */
+            height: auto; /* Auto height to maintain aspect ratio */
+            max-height: 400px; /* Use max-height to respect the original iframe height */
+            border: none;
+            margin-bottom: 30px;
+            background-color: #000; /* Ensures a black background if the video doesn't fill the space */
+        }
+        
+        a {
+            color: #ff0033;
+            text-decoration: underline;
+            font-size: 1.2em;
+            transition: opacity 0.3s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1em;
+            font-family: 'Crimson Text', monospace;
+            color: #000000;
+            cursor: pointer;
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+            text-decoration: none;
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="./shop.html" class="back-button">← back to shop</a>
+    <div class="container">
+        <video controls poster="./assets/video_poster.jpg">
+            <source src="./assets/call.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* Inherited background and font theme */
+            background-color: #A477BC;
+            color: #ff0033;
+            font-family: 'Crimson Text', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+        }
+
+        /* Styling for the main image */
+        .image-wrapper {
+            max-width: 700px;
+            width: 100%;
+            margin: 30px auto;
+            /* Ensures the wrapper respects the aspect ratio of the image if needed */
+        }
+
+        /* The image and map MUST be relative to each other */
+        .interactive-image {
+            display: block;
+            width: 100%; /* Make the image responsive within the container */
+            height: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        a {
+            color: #ff0033;
+            text-decoration: underline;
+            font-size: 1.2em;
+            transition: opacity 0.3s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1em;
+            font-family: 'Crimson Text', monospace;
+            color: #000000;
+            cursor: pointer;
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+            text-decoration: none;
+            text-shadow: none;
+        }
+
+        /* Optional visual cue for the interactive area */
+        .hint {
+            margin-top: 10px;
+            font-style: italic;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <a href="./shop.html" class="back-button">← back to shop</a>
+    
+    <div class="container">
+        <img 
+  src="./assets/transcript.png" 
+  class="interactive-image"
+  usemap="#image_map_link"
+/>
+
+<map name="image_map_link" id="image_map_link">
+  <area shape="rect" coords="1500,1300,750,1907" href="./lk.html" alt="Hidden Link">
+</map>
+
+<script src="https://cdn.jsdelivr.net/npm/image-map-resizer@1.0.10/js/imageMapResizer.min.js"></script>
+<script>
+window.onload = () => imageMapResize();
+</script>
+
+        </div>
+    </div>
+</body>
+</html>
