@@ -1,1 +1,335 @@
-<html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c1{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c0{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c2{background-color:#ffffff;max-width:468pt;padding:72pt 72pt 72pt 72pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c2 doc-content"><p class="c0"><span class="c1">FINISH IT DEEMER</span></p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deemcoin.shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=MonteCarlo&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --satin-sheen-gold: #D09E38ff;
+      --white: #ffffff;
+      --russian-violet: #401C4Eff;
+      --african-violet: #A477BCff;
+      --neon-green: #39ff14;
+      --danger-red: #ff0033;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+        position: relative;
+        font-family: 'Press Start 2P', monospace;
+        color: var(--white);
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        text-shadow: 2px 2px #000;
+        }
+
+        /* background overlay with unicorn gif */
+        body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("assets/unicorn.gif") center center / cover no-repeat;
+        mix-blend-mode:normal;  /* try: multiply, screen, lighten, difference */
+        opacity: 0.35;            /* adjust transparency */
+        z-index: 1;              /* keep it behind everything */
+        pointer-events: none;     /* don't block clicks */
+        }
+
+
+        .scroll-container {
+        display: flex;
+        flex-direction: row;
+        height: calc(90vh); /* fill above ticker */
+        overflow-x: auto;
+        width: 100%;
+        cursor: grab;         /* hand cursor */
+        cursor: -webkit-grab; /* Safari/old WebKit */
+        }
+        .scroll-container.dragging {
+        cursor: grabbing;         /* closed hand while dragging */
+        cursor: -webkit-grabbing;
+        }
+        section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("assets/gifs/unicorn.gif") center/cover no-repeat;
+        mix-blend-mode:difference;  /* try multiply/screen/difference too */
+        opacity: 0.4;
+        z-index: 0;
+        pointer-events: none;
+        }
+
+        .page3::before {
+        background: url("assets/gifs/coinsfalling.gif") center/cover no-repeat;
+        opacity: 0.1;
+        }
+        section {
+        flex: 0 0 100%;
+        height: 100%;     /* matches container height */
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-right: 5px dashed var(--danger-red);
+        position: relative;
+          z-index: 1;
+        }
+
+    h1 {
+      font-family: 'MonteCarlo', cursive;
+      font-size: 9vh;
+      color: var(--neon-green);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--neon-green);
+    }
+    p { font-size: 3rem; line-height: 3.3rem; text-wrap:"flex"}
+    .page1 { background: rgba(164, 119, 188, 0.9); }
+    .page2 { background: rgba(64, 28, 78, 0.9); }
+    .page3 { background: rgba(0,0,0,0.85); }
+
+    .ad {
+      width: 300px;
+      height: 250px;
+      background: yellow;
+      border: 3px solid red;
+      color: black;
+      font-size: 8vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+
+    /* neocities buttons */
+    .button-grid {
+      display:flex;
+      grid-template-columns: repeat(auto-fill, 33px);
+      grid-gap: 4px;
+      margin-top: 2rem;
+    }
+    .button-grid img {
+      width: 88px;
+      height: 31px;
+      image-rendering: pixelated;
+      border: 1px solid #000;
+    }
+
+    /* bottom ticker */
+    .ticker {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10vh;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      font-size: 5vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-top: 3px double red;
+    }
+    .ticker div {
+      white-space: nowrap;
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 20s linear infinite;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+      
+    }
+
+    marquee {
+      font-size: 1rem;
+      color: cyan;
+      text-shadow: 0 0 5px cyan;
+      margin: 0.5rem 0;
+    }
+
+    .banner {
+      width: 100%;
+      height: 150px;
+      background: url("assets/gifs/coinsfalling.gif") center center / cover no-repeat;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--danger-red);
+    }
+
+    .page3-content {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 80%;
+    }
+
+    .page3-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .page3-content a {
+      color: #0066ff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+    h1 {
+        font-size: clamp(4rem, 20vw, 8rem);
+    }
+    p {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+    }
+    .button-grid {
+        grid-template-columns: repeat(auto-fill, 44px);
+    }
+    }
+
+  </style>
+</head>
+<body>
+    <div class="ticker top-ticker">
+  <div id="ticker-content-top"></div>
+</div>
+
+  <div class="scroll-container">
+    <section class="page1">
+      <h1>Deemcoin.shop</h1>
+      <marquee behavior="alternate">MAJOR FIAT CURRENCIES WILL BE DEPRECATED BY 2030</marquee>
+      <p>Welcome to the official website for Deem coin</p>
+    <p>Meet you over here! :D -></p>
+      <div class="button-grid">
+        <img src="assets/gifs/1.gif" alt="neocities">
+        <img src="assets/gifs/2.gif" alt="">
+        <img src="assets/gifs/3.gif" alt="">
+        <img src="assets/gifs/4.gif" alt="">
+      </div>
+    </section>
+    <section class="page2">
+      <h1>The shoppp</h1>
+      <p>Shop</p>
+      <a href="shop.html"><div class="ad">SHOP</div></a>
+      <marquee scrollamount="7">You are visitor number ${numVisitors()}</marquee>
+    </section>
+    <section class="page3">
+      <h1>about the coinn</h1>
+
+      <div class="page3-content">
+        <p>Deemcoin is a brand new form of currency being developed by our gracious founder, Deemer, alongside a small group of angel investors. Deemcoin is NOT a cryptocurrency.</p>
+        <p>The key selling point for Deemcoin compared to similar forms of currency is really quite simple. Take the USD, for example. 1 USD can buy you… nothing! Maybe a treat at a corner store.</p>
+        <p>1 Deemcoin can buy you ANYTHING. A yacht. An island. A treat at a corner store.</p>
+        <p>We had to pull a lot of strings here at Deemcorp to get our business model working.</p>
+        <p>Deemcoin is the future. Deemcoin will change the world. Deemcoin will make you rich.</p>
+        <br>
+        <p><a href="./caesar.html">Coming Q2 2026</a></p>
+      </div>
+    </section>
+  </div>
+
+  <div class="ticker">
+    <div id="ticker-content"></div>
+  </div>
+
+  <script>
+    const pairs = ["USD","EUR","JPY","GBP","CAD","BTC","ETH","CHF","NVDA","MSFT","AAPL","GOOG","AMZN","META","AVGO","TAC","OHP","HOB","ICAT","BRK.A","BRK.B","TSLA","V","JCK","GRO","IMP","COST"];
+    function randArrow() { return Math.random() < 0.5 ? "▲" : "▼"; }
+    function buildTicker() {
+      return pairs.map(sym => `⨿ Deemcoin/${sym} 1.00 ${randArrow()}`)
+                  .join(" | ");
+    }
+    function updateTicker() {
+      const elem = document.getElementById("ticker-content");
+      elem.textContent = buildTicker();
+    }
+    window.onload = () => {
+      updateTicker();
+      setInterval(updateTicker, 800);
+    };
+
+    const scroller = document.querySelector('.scroll-container');
+
+  // Wheel: translate vertical (and horizontal) deltas into horizontal scroll
+  scroller.addEventListener('wheel', function (e) {
+    const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (delta !== 0) {
+      e.preventDefault();
+      scroller.scrollBy({ left: delta, behavior: 'auto' });
+    }
+  }, { passive: false });
+
+  // Touch: horizontal swipe to scroll
+  let startX = 0, startY = 0;
+      let isDown = false;
+    let scrollLeft;
+  scroller.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    startX = t.pageX;
+    startY = t.pageY;
+  }, { passive: true });
+
+  scroller.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    const dx = t.pageX - startX;
+    const dy = t.pageY - startY;
+
+    // Only hijack if the gesture is mostly horizontal
+    if (Math.abs(dx) > Math.abs(dy)) {
+      e.preventDefault();
+      scroller.scrollLeft -= dx;   // move by the delta
+      startX = t.pageX;            // reset anchor for smooth drag
+      startY = t.pageY;
+    }
+  }, { passive: false });
+
+
+  scroller.addEventListener('mousedown', (e) => {
+    isDown = true;
+    scroller.classList.add('dragging');
+    startX = e.pageX - scroller.offsetLeft;
+    scrollLeft = scroller.scrollLeft;
+    e.preventDefault(); // avoid accidental selections
+  });
+
+  scroller.addEventListener('mouseleave', () => {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+
+  scroller.addEventListener('mouseup', () => {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+
+  scroller.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scroller.offsetLeft;
+    const walk = (x - startX); // how far moved
+    scroller.scrollLeft = scrollLeft - walk;
+  });
+  // Optional: arrow keys for desktop navigation
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') scroller.scrollBy({ left: 100, behavior: 'smooth' });
+    if (e.key === 'ArrowLeft')  scroller.scrollBy({ left: -100, behavior: 'smooth' });
+  });
+  
+  </script>
+</body>
+</html>
