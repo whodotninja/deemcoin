@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lk</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #2D1B3D;
+            color: #ff0033;
+            font-family: 'Crimson Text', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .main-image {
+            width: 70%;
+            max-width: 600px;
+            border: 3px solid #ff0033;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        a {
+            color: #ff0033;
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1em;
+            font-family: 'Crimson Text', monospace;
+            color: #ff0033;
+            cursor: pointer;
+            transition: transform 0.2s ease, text-shadow 0.2s ease;
+            text-decoration: none;
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="./shop.html" class="back-button">← back to shop</a>
+    
+    <div class="container">
+        <div class="image-section">
+            <img class="main-image" src="./assets/june2925.png" alt="june 29 25">
+        </div>
+    </div>
+</body>
+</html>
